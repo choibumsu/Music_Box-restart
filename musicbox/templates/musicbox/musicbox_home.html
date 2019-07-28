@@ -1,0 +1,14 @@
+{% extends 'musicbox/base.html' %}
+
+{% block title %}
+Music Box Home
+{% endblock %}
+
+{% block content %}
+    <ul>
+        <li><a href="{% url 'musicbox:song_list' %}">songs</a> : {{ song_count }}</li>
+        <li><a href="">artists</a> : {{ artist_count }}</li>
+        <li><a href="">genres</a> : {{ genre_count }}</li>
+        <li><a href="">playlists</a> : {{ playlist_count }}</li>
+    </ul>
+{% endblock %}
