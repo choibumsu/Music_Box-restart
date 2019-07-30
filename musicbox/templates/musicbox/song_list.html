@@ -5,8 +5,7 @@ Song List
 {% endblock %}
 
 {% block content %}
-{% load el_pagination_tags %}
-{% lazy_paginate songs %}
+
 {% for song in songs %}
 <div class="card col-5 d-inline-flex m-1">
     <div class="card-body">
