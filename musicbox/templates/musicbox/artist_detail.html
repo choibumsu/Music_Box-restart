@@ -1,13 +1,14 @@
 {% extends 'musicbox/base.html' %}
 
 {% block title %}
-Song List
+Artist Detail
 {% endblock %}
 
 {% block content %}
-{% load el_pagination_tags %}
-{% lazy_paginate songs %}
-{% for song in songs %}
+<div class="jumbotron py-2 m-3">
+    <h1 class="display-5 artist-name">{{ artist.name }} <small>({{ artist.real_name }} )</small></h1>
+</div>
+{% for song in artist.song_set.all %}
 <div class="card col-5 d-inline-flex m-1">
     <div class="card-body">
         <h5 class="card-title"><a href="{% url 'musicbox:kind_detail' 'song' song.id %}">{{ song.title }}</a></h5>
@@ -18,14 +19,15 @@ Song List
             <a href="#">{{ song.genre }}</a><br />
         </p>
         <div style="position:relative;padding-top:56.25%;">
-        <iframe id="{{song.id}}" frameborder="0" allowfullscreen="1"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player"
-            src="https://www.youtube.com/embed/{{ song.link }}" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+            <iframe id="{{song.id}}" frameborder="0" allowfullscreen="1"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                title="YouTube video player" src="https://www.youtube.com/embed/{{ song.link }}"
+                style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
         </div>
     </div>
 </div>
 {% endfor %}
 <hr>
-{% include 'musicbox/pagination.html' %}
+<hr>
 
 {% endblock %}

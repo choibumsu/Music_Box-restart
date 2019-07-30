@@ -18,17 +18,67 @@
         crossorigin="anonymous"></script>
 
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:900i&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400i,900i,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,900,700&display=swap" rel="stylesheet">
 
     <style>
-    nav {
-        background-color: #00026d;
-    }
-    .navbar-brand {
-        font-family: Roboto;
-        font-size : 32px;
-    }
+        a:link {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: skyblue;
+            text-decoration: underline;
+        }
+
+        nav {
+            background-color: #00026d;
+        }
+
+        .navbar-brand, .song-title, .card-title, th, .lead, .list-group-item,
+        .artist-name {
+            font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+            font-style :italic;
+        }
+
+        .navbar-brand {
+            font-weight : 900;
+            font-size: 32px;
+        }
+
+        .song-title, .card-title {
+            font-weight : 700;
+        }
+        .card-title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .song-title {
+            font-size : 2vw;
+        }
+
+        .card-text {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .page_display div {
+            width: 25px;
+        }
+
+        .list-group-item {
+            font-size : 20px;
+        }
+
+
     </style>
 
     <title>{% block title %}{% endblock %}</title>
@@ -36,7 +86,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'musicbox:musicbox_home' %}">
             <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30"
                 class="d-inline-block align-top" alt="">
             Music Box
@@ -49,8 +99,33 @@
             </form>
         </div>
     </nav>
-    {% block content %}
-    {% endblock %}
+    <section class="row m-1">
+        <div class="col-2">
+            <div class="list-group ">
+                <a href="{% url 'musicbox:kind_list' 'song' %}" class="list-group-item list-group-item-action">Songs</a>
+                <a href="{% url 'musicbox:kind_list' 'artist' %}"
+                    class="list-group-item list-group-item-action">Artists</a>
+                <a href="{% url 'musicbox:kind_list' 'genre' %}"
+                    class="list-group-item list-group-item-action">Genres</a>
+                <a href="{% url 'musicbox:kind_list' 'playlist' %}"
+                    class="list-group-item list-group-item-action">Playlists</a>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+    <footer class="container">
+        <div class="row">
+            <div class="col-12 mb-5">
+                <hr>
+                <h6 class="text-right"><a href="https://github.com/choibumsu">&copy; Choi Teemo</a></h6>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

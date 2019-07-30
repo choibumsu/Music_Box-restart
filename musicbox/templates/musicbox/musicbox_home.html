@@ -5,10 +5,25 @@ Music Box Home
 {% endblock %}
 
 {% block content %}
-    <ul>
-        <li><a href="{% url 'musicbox:song_list' %}">songs</a> : {{ song_count }}</li>
-        <li><a href="">artists</a> : {{ artist_count }}</li>
-        <li><a href="">genres</a> : {{ genre_count }}</li>
-        <li><a href="">playlists</a> : {{ playlist_count }}</li>
-    </ul>
+<div class="jumbotron py-2 m-0">
+    <h1 class="display-4"><a href="{% url 'musicbox:kind_list' 'song' %}">Songs</a></h1>
+    <p class="lead">{{ song_count }} songs</p>
+    <hr>
+</div>
+<div class="jumbotron py-2">
+    <h1 class="display-4"><a href="{% url 'musicbox:kind_list' 'artist' %}">Artists</a></h1>
+    <p class="lead">{{ artist_count }} artists</p>
+    <hr>
+</div>
+<div class="jumbotron py-2">
+    <h1 class="display-4"><a href="{% url 'musicbox:kind_list' 'genre' %}">Genres</a></h1>
+    <p class="lead">{{ genre_count }} genres</p>
+    <hr>
+</div>
+<div class="jumbotron py-2">
+    <h1 class="display-4"><a href="{% url 'musicbox:kind_list' 'playlist' %}">Playlists</a></h1>
+    <p class="lead">{{ playlist_count }} playlists</p>
+    <hr>
+</div>
+
 {% endblock %}

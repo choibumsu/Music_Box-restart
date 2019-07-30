@@ -1,0 +1,36 @@
+<div class="page_display d-flex">
+        {% load mathfilters %}
+    
+        <div class="prev_page">
+            {% if startPageNum != 1 %}
+                <a href="?pageNum={{startPageNum | sub:1}}">[<<]</a>
+            {% endif %}
+        </div>
+        <div class="prev_content">
+            {% if pageNum != 1 %}
+                <a href="?pageNum={{pageNum | sub:1}}">[<]</a>
+            {% endif %}
+        </div>
+        
+        {% for i in bottomPages %}
+            <div class="page_num">
+                {% if i == pageNum %}
+                    <a href="?pageNum={{i}}"><strong>{{i}}</strong></a>
+                {% else %}
+                    <a href="?pageNum={{i}}">{{i}}</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    
+        <div class="next_content">
+            {% if pageNum < totalPageCount %}
+                <a href="?pageNum={{pageNum | add:1}}">[>]</a>
+            {% endif %}
+        </div>
+        
+        <div class="next_page">
+            {% if endPageNum < totalPageCount %}
+                <a href="?pageNum={{endPageNum | add:1}}">[>>]</a>
+            {% endif %}
+        </div>
+    </div>
