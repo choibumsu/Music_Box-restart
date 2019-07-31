@@ -5,22 +5,26 @@ Playlist List
 {% endblock %}
 
 {% block content %}
-<div class="col-6">
-    <table class="table table-hover table-bordered">
+<div class="p-2 m-3">
+    <h1 class="kind-title display-5">Playlist List</h1>
+</div>
+<div class="col-md-12 col-lg-6">
+    <table class="table table-hover mt-2 border-bottom">
         <thead>
             <tr class="thead-light" style="">
-                <th>제목</th>
-                <th>노래</th>
+                <th width="75%">Playlist</th>
+                <th>Songs</th>
             </tr>
         </thead>
         <tbody>
             {% for playlist in playlists %}
             <tr>
-                <td><a href="">{{ playlist.name }}</a></td>
-                <td>{{ playlist.song_set.all.count }}곡</td>
+                <td><a href="{% url 'musicbox:kind_detail' 'playlist' 1 %}">{{ playlist.name }}</a></td>
+                <td>{{ playlist.songs.count }} songs</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+{% include 'musicbox/pagination.html' %}
 </div>
 {% endblock %}

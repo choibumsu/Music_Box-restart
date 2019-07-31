@@ -44,7 +44,7 @@ class Song(models.Model):
 
 
 class Playlist(models.Model):
-    name = models.CharField(max_length=100, primary_key=True)
+    name = models.CharField(max_length=100)
     explanation = models.TextField(max_length=1000, help_text='Enter a explanation of this song')
     songs = models.ManyToManyField(Song, help_text='Select a songs for this playlist')
 
@@ -52,6 +52,6 @@ class Playlist(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('playlist_detail', args=[str(self.name)])
+        return reverse('playlist_detail', args=[str(self.id)])
 
 

@@ -5,12 +5,13 @@ Song Detail
 {% endblock %}
 
 {% block content %}
-<div class="jumbotron py-2 m-3">
-    <h1 class="display-5 song-title">{{ song.title }}</h1>
+<div class="jumbotron pb-4 pt-2 m-3">
+    <h1 class="display-5 song-title mt-2">{{ song.title }}</h1>
+    <hr>
     <p class="lead text-right">
         {% for artist in song.artist.all %}
-        <a href="#">{{ artist }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}<br />
-        <a href="#">{{ song.genre }}</a><br />
+        <a href="{% url 'musicbox:kind_detail' 'artist' artist.id %}">{{ artist }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}<br />
+        <a href="{% url 'musicbox:kind_detail' 'genre' song.genre.id %}">{{ song.genre }}</a><br />
     </p>
     <div style="position:relative;padding-top:56.25%;">
         <iframe id="{{song.id}}" frameborder="0" allowfullscreen="1"
@@ -18,8 +19,6 @@ Song Detail
             src="https://www.youtube.com/embed/{{ song.link }}"
             style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
     </div>
-    <hr>
 </div>
-<hr>
 
 {% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'musicbox/base.html' %}
+
+{% block title %}
+Search Result
+{% endblock %}
+
+{% block content %}
+<div class="p-2 m-3">
+        <h1 class="kind-title display-5">'{{ q }}' <small>검색결과</small></h1>
+    </div>
+    <hr>
+    <div class="col-md-12 col-lg-8">
+        <h5>Songs<small> : {{ songs.count }}개의 검색결과</small></h5>
+        <table class="table table-hover mt-2 border-bottom">
+            <thead>
+                <tr class="thead-light" style="">
+                    <th width="50%">Title</th>
+                    <th>Artist</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for song in songs %}
+                <tr>
+                    <td><a href="{% url 'musicbox:kind_detail' 'song' song.id %}">{{ song.title }}</a></td>
+                    <td>
+                        {% for artist in song.artist.all %}
+                            <a href="{% url 'musicbox:kind_detail' 'artist' artist.id %}">{{ artist }}</a>
+                            {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div class="col-md-12 col-lg-8">
+        <h5>Artists<small> : {{ artists.count }}개의 검색결과</small></h5>
+        <table class="table table-hover mt-2 border-bottom">
+            <thead>
+                <tr class="thead-light" style="">
+                    <th width="50%">Artist</th>
+                    <th>Real Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for artist in artists %}
+                <tr>
+                    <td><a href="{% url 'musicbox:kind_detail' 'artist' artist.id %}">{{ artist.name }}</a></td>
+                    <td>{{ artist.real_name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div class="col-md-12 col-lg-8">
+            <h5>Genres<small> : {{ genres.count }}개의 검색결과</small></h5>
+            <table class="table table-hover mt-2 border-bottom">
+                <thead>
+                    <tr class="thead-light" style="">
+                        <th>Genre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for genre in genres %}
+                        <tr>
+                            <td><a href="{% url 'musicbox:kind_detail' 'genre' genre.id %}">{{ genre.name }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div class="col-md-12 col-lg-8">
+                <h5>Playlist<small> : {{ playlists.count }}개의 검색결과</small></h5>
+                <table class="table table-hover mt-2 border-bottom">
+                    <thead>
+                        <tr class="thead-light" style="">
+                            <th>Playlists</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for playlist in playlists %}
+                            <tr>
+                                <td><a href="{% url 'musicbox:kind_detail' 'playlist' playlist.id %}">{{ playlist.name }}</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+
+{% endblock %}

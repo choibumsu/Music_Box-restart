@@ -1,12 +1,12 @@
 {% extends 'musicbox/base.html' %}
 
 {% block title %}
-Artist Detail
+Genre Detail
 {% endblock %}
 
 {% block content %}
 <div class="col-md-12 col-lg-10 jumbotron py-2 m-1">
-    <h1 class="display-5 artist-name mt-2">{{ artist.name }} <small>({{ artist.real_name }} )</small></h1>
+    <h1 class="display-5 artist-name mt-2">{{ genre.name }}</h1>
 </div>
 {% for song in songs %}
 <div class="card col-md-12 col-lg-5 d-inline-flex m-1">
@@ -28,7 +28,7 @@ Artist Detail
 </div>
 {% endfor %}
 <div class="col-md-12 col-lg-10 mx-3">
-        {% include 'musicbox/pagination.html' %}
-        </div>
+{% include 'musicbox/pagination.html' %}
+</div>
 
 {% endblock %}

@@ -16,6 +16,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400i,900i,700i&display=swap" rel="stylesheet">
@@ -41,27 +43,36 @@
             background-color: #00026d;
         }
 
-        .navbar-brand, .song-title, .card-title, th, .lead, .list-group-item,
-        .artist-name {
+        .navbar-brand,
+        .song-title,
+        .card-title,
+        th,
+        .lead,
+        .list-group-item,
+        .artist-name,
+        .kind-title {
             font-family: 'Roboto', 'Noto Sans KR', sans-serif;
-            font-style :italic;
+            font-style: italic;
         }
 
         .navbar-brand {
-            font-weight : 900;
+            font-weight: 900;
             font-size: 32px;
         }
 
-        .song-title, .card-title {
-            font-weight : 700;
+        .song-title,
+        .card-title {
+            font-weight: 700;
         }
+
         .card-title {
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
         }
+
         .song-title {
-            font-size : 2vw;
+            font-size: 2vw;
         }
 
         .card-text {
@@ -72,13 +83,12 @@
 
         .page_display div {
             width: 25px;
+            text-align: center;
         }
 
         .list-group-item {
-            font-size : 20px;
+            font-size: 20px;
         }
-
-
     </style>
 
     <title>{% block title %}{% endblock %}</title>
@@ -93,15 +103,15 @@
         </a>
 
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            <form class="form-inline my-2 my-lg-0 w-75 d-flex justify-content-end" method="get" action="{% url 'musicbox:search_result' %}">
+                <input class="form-control mr-sm-2 d-inline-flex w-50" type="text" placeholder="Search" aria-label="Search" name="q">
+                <button class="btn btn-outline-light my-2 my-sm-0 d-inline-flex" type="submit">Search</button>
             </form>
         </div>
     </nav>
     <section class="row m-1">
-        <div class="col-2">
-            <div class="list-group ">
+        <div class="col-sm-12 col-md-2 p-0">
+            <div id="list-group" class="w-100">
                 <a href="{% url 'musicbox:kind_list' 'song' %}" class="list-group-item list-group-item-action">Songs</a>
                 <a href="{% url 'musicbox:kind_list' 'artist' %}"
                     class="list-group-item list-group-item-action">Artists</a>
@@ -111,17 +121,17 @@
                     class="list-group-item list-group-item-action">Playlists</a>
             </div>
         </div>
-        <div class="col-10">
+        <div class="col-sm-12 col-md-10">
             <div class="container">
                 {% block content %}
                 {% endblock %}
             </div>
         </div>
     </section>
+    <hr>
     <footer class="container">
         <div class="row">
             <div class="col-12 mb-5">
-                <hr>
                 <h6 class="text-right"><a href="https://github.com/choibumsu">&copy; Choi Teemo</a></h6>
             </div>
         </div>

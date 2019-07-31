@@ -5,23 +5,27 @@ Artist List
 {% endblock %}
 
 {% block content %}
-<div class="col-6">
-    <table class="table table-hover table-bordered">
+<div class="p-2 m-3">
+    <h1 class="kind-title display-5">Artist List</h1>
+</div>
+<div class="col-md-12 col-lg-6">
+    <table class="table table-hover mt-2 border-bottom">
         <thead>
             <tr class="thead-light" style="">
-                <th>이름</th>
-                <th>노래</th>
+                <th width="75%">Name</th>
+                <th>Songs</th>
             </tr>
         </thead>
         <tbody>
             {% for artist in artists %}
             <tr>
                 <td><a href="{% url 'musicbox:kind_detail' 'artist' artist.id %}">{{ artist.name }}</a></td>
-                <td>{{ artist.song_set.all.count }}곡</td>
+                <td>{{ artist.song_set.all.count }} songs</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    {% include 'musicbox/pagination.html' %}
 </div>
-{% include 'musicbox/pagination.html' %}
+
 {% endblock %}
