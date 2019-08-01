@@ -8,7 +8,7 @@ class GenreAdmin(admin.ModelAdmin):
     
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
-    list_display = ['name', 'real_name']
+    list_display = ['name', 'real_name', 'another_name']
 
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin):

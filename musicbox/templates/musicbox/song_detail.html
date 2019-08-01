@@ -10,7 +10,8 @@ Song Detail
     <hr>
     <p class="lead text-right">
         {% for artist in song.artist.all %}
-        <a href="{% url 'musicbox:kind_detail' 'artist' artist.id %}">{{ artist }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}<br />
+        <a href="{% url 'musicbox:kind_detail' 'artist' artist.id %}">{{ artist }}</a>{% if not forloop.last %},
+        {% endif %}{% endfor %}<br />
         <a href="{% url 'musicbox:kind_detail' 'genre' song.genre.id %}">{{ song.genre }}</a><br />
     </p>
     <div style="position:relative;padding-top:56.25%;">
@@ -19,6 +20,25 @@ Song Detail
             src="https://www.youtube.com/embed/{{ song.link }}"
             style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
     </div>
+</div>
+<div class="mt-5 container">
+    <h5>이 노래가 있는 Playlist<small> : {{ playlists.count }} Playlist</small></h5>
+    {% if playlists %}
+        <table class="table table-hover border-bottom">
+            <thead>
+                <tr class="thead-light" style="">
+                    <th>Playlist</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for playlist in playlists %}
+                <tr>
+                    <td><a href="{% url 'musicbox:kind_detail' 'playlist' 1 %}">{{ playlist.name }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 </div>
 
 {% endblock %}

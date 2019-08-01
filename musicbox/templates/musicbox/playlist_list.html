@@ -19,7 +19,7 @@ Playlist List
         <tbody>
             {% for playlist in playlists %}
             <tr>
-                <td><a href="{% url 'musicbox:kind_detail' 'playlist' 1 %}">{{ playlist.name }}</a></td>
+                <td><a href="{% url 'musicbox:kind_detail' 'playlist' playlist.id %}">{{ playlist.name }}</a></td>
                 <td>{{ playlist.songs.count }} songs</td>
             </tr>
             {% endfor %}

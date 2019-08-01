@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,78 +19,12 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400i,900i,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,900,700&display=swap" rel="stylesheet">
-
-    <style>
-        a:link {
-            color: black;
-            text-decoration: none;
-        }
-
-        a:visited {
-            color: black;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: skyblue;
-            text-decoration: underline;
-        }
-
-        nav {
-            background-color: #00026d;
-        }
-
-        .navbar-brand,
-        .song-title,
-        .card-title,
-        th,
-        .lead,
-        .list-group-item,
-        .artist-name,
-        .kind-title {
-            font-family: 'Roboto', 'Noto Sans KR', sans-serif;
-            font-style: italic;
-        }
-
-        .navbar-brand {
-            font-weight: 900;
-            font-size: 32px;
-        }
-
-        .song-title,
-        .card-title {
-            font-weight: 700;
-        }
-
-        .card-title {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .song-title {
-            font-size: 2vw;
-        }
-
-        .card-text {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .page_display div {
-            width: 25px;
-            text-align: center;
-        }
-
-        .list-group-item {
-            font-size: 20px;
-        }
-    </style>
 
     <title>{% block title %}{% endblock %}</title>
 </head>

@@ -16,6 +16,7 @@ class Artist(models.Model):
     """Model representing an author."""
     name = models.CharField(max_length=50)
     real_name = models.CharField(max_length=50)
+    another_name = models.CharField(max_length=50, null=True, blank=True)
 
     class Meta:
         ordering = ['name']

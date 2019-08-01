@@ -67,8 +67,10 @@ def kind_list(request, kind):
 def kind_detail(request, kind, pk):
     if kind=='song':
         context = get_object_or_404(Song, pk=pk)
+        playlists = Playlist.objects.filter(songs=context)
         return render(request, f"musicbox/{kind}_detail.html", {
             f'{kind}':context,
+            'playlists' : playlists,
         })
     elif kind=='artist':
         context = get_object_or_404(Artist, pk=pk)
@@ -122,7 +124,7 @@ def kind_detail(request, kind, pk):
 def search_result(request):
     q = request.GET['q']
     songs = Song.objects.filter(title__contains=q)
-    artists = Artist.objects.filter(name__contains=q) | Artist.objects.filter(real_name__contains=q)
+    artists = Artist.objects.filter(name__contains=q) | Artist.objects.filter(real_name__contains=q) | Artist.objects.filter(another_name__contains=q)
     genres = Genre.objects.filter(name__contains=q)
     playlists = Playlist.objects.filter(name__contains=q) | Playlist.objects.filter(explanation__contains=q)
 
